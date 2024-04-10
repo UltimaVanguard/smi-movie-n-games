@@ -96,7 +96,7 @@ function getGames() {
         .then(function(games) {
             console.log(games);
             // function to display list of games
-            for(let game of games) {
+            for(let game of games.results) {
                 displayGames(game);
             }
     })
