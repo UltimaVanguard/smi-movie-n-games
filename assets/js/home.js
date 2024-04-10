@@ -5,7 +5,7 @@ function getgames() {
     
     // Need to add criteria to the URL
     // Build search URL
-    const searchURL = 'https://api.rawg.io/api/games?&key=1f307ccc56be4c28bbb79985edb675eb'
+    const searchURL = 'https://api.rawg.io/api/games?key=1f307ccc56be4c28bbb79985edb675eb'
 
     // fetch request
     fetch(searchURL)
