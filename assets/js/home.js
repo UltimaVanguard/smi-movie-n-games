@@ -27,10 +27,15 @@ function displayMovies(movie) {
     movieCardType.setClass('col-6');
     movieCardType.text(`Type: ${movie.Type}`);
 
+    // creating an element to add a button
+    const movieCardButton = $('button');
+    movieCardButton.setClass('button btn-movie-info');
+    movieCardButton.text('More Info');
+
     // appending heading to the header
     movieCardHeader.append(movieCardHeading);
     // appending movieCard pieces to the movieCard
-    movieCard.append(movieCardHeader, movieCardImg, movieCardYear, movieCardType);
+    movieCard.append(movieCardHeader, movieCardImg, movieCardYear, movieCardType, movieCardButton);
     // appending movieCard to the movie section
     movieDisplayEl.append(movieCard);
 }
