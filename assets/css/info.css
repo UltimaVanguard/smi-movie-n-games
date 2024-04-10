@@ -1,0 +1,42 @@
+:root {
+    --bg-secondary-color: #f3f3f6;
+    --color-primary: #14854F;
+    --color-lightGrey: #d2d6dd;
+    --color-grey: #747681;
+    --color-darkGrey: #3f4144;
+    --color-error: #d43939;
+    --color-success: #28bd14;
+    --grid-maxWidth: 120rem;
+    --grid-gutter: 2rem;
+    --font-size: 1.6rem;
+    --font-color: #333333;
+    --font-family-sans: sans-serif;
+    --font-family-mono: monaco, "Consolas", "Lucida Console", monospace;
+    --bg-color-2: #376E6F;
+    --bg-color-3: #1C3334;
+    --text-color: #DA7B93;
+    --hovers: #2E151B;
+    --bg-color: #2f4454;
+  }
+
+body.dark {
+    --bg-color: #000;
+    --bg-secondary-color: #131316;
+    --font-color: #f5f5f5;
+    --color-grey: #ccc;
+    --color-darkGrey: #777;
+  }
+
+  nav {
+    width: 100%;
+    position: fixed;
+    top: 0;
+  }
+
+  nav a:hover {
+    color: #28bd14;
+  }
+
+  .toph1 {
+    margin-top: 50px;
+  }
