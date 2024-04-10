@@ -1,5 +1,4 @@
 :root {
-    --bg-color: #ffffff;
     --bg-secondary-color: #f3f3f6;
     --color-primary: #14854F;
     --color-lightGrey: #d2d6dd;
@@ -12,7 +11,12 @@
     --font-size: 1.6rem;
     --font-color: #333333;
     --font-family-sans: sans-serif;
-    --font-family-mono: monaco, "Consolas", "Lucida Console", monospace;
+    --font-family-mono: monaco, "Consolas", "Lucida Console", monospace;+
+    --bg-color: #2f4454;
+    --bg-color-2: #376E6F;
+    --bg-color-3: #1C3334;
+    --text-color: #DA7B93;
+    --hovers: #2E151B;
   }
 
 body.dark {
@@ -25,6 +29,8 @@ body.dark {
 
   nav {
     width: 100%;
+    position: fixed;
+    top: 0;
   }
 
   nav a:hover {
@@ -32,5 +38,5 @@ body.dark {
   }
 
   .toph1 {
-    margin-top: 10px;
+    margin-top: 50px;
   }
