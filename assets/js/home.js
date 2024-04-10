@@ -1,3 +1,4 @@
+
 function getGames() {
     //
     //  If statements for criteria goes here 
@@ -37,7 +38,7 @@ function getMovies() {
         })
         .then(function(movies) {
             console.log(movies);
-            // loop to display list of movies
+            // loop to display list of moviesss
             // for(let movie of movies) {
             //     displayMovies(movie);
             // }
