@@ -1,5 +1,44 @@
 // variables for html elements
+const gameDisplayEl = $('#games');
 const movieDisplayEl = $('#movies');
+
+function displayGames(game) {
+    // creating element for the main card
+    const gameCard = $('div');
+    gameCard.setClass('card col-3');
+    gameCard.attr('data-game-id', game.id);
+    
+    // creating element for header
+    const gameCardHeader = $('header')
+    const gameCardHeading = $('h4')
+    gameCardHeading.text(game.name);
+
+    // creating element for poster image
+    const gameCardImg = $('img');
+    gameCardImg.attr('src', game.background_image)
+
+    // creating element for year released
+    const gameCardYear = $('p');
+    gameCardYear.setClass('col-6');
+    gameCardYear.text(`Year Released: ${game.released}`);
+
+    // creating element for Type
+    const gameCardRating = $('p');
+    gameCardRating.setClass('col-6');
+    gameCardRating.text(`Type: ${game.esrb_rating.name}`);
+
+    // creating an element to add a button
+    const gameCardButton = $('button');
+    gameCardButton.setClass('button btn-game-info');
+    gameCardButton.text('More Info');
+
+    // appending heading to the header
+    gameCardHeader.append(gameCardHeading);
+    // appending gameCard elements to the gameCard
+    gameCard.append(gameCardHeader, gameCardImg, gameCardYear, gameCardRating, gameCardButton);
+    // appending movieCard to the movie section
+    gameDisplayEl.append(gameCard);
+}
 
 // function to display searched movies
 function displayMovies(movie) {
@@ -57,9 +96,9 @@ function getGames() {
         .then(function(games) {
             console.log(games);
             // function to display list of games
-            // for(let game of games) {
-            //     displayGames(game);
-            // }
+            for(let game of games.results) {
+                displayGames(game);
+            }
     })
 }
 
