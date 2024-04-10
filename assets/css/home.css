@@ -1,0 +1,106 @@
+body {
+    margin:0;
+    text-align: center;
+    background-color: black;
+    color: coral;
+}
+
+.top {
+  list-style-type: none;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgb(162, 0, 255);
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.top li {
+  float: left;
+}
+
+.top li a {
+  display: block;
+  color: coral;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.top li a:hover {
+  background-color: orangered;
+  border-radius: 10px;
+}
+
+input[type=text] {
+    box-sizing: border-box;
+    border: 10px double coral;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: black;
+    text-align: center;
+    padding: 12px 20px 12px 40px;
+  }
+
+
+.header {
+    background-color: #F1F1F1;
+    text-align: center;
+    padding: 20px;
+  }
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 20px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: rgb(162, 0, 255);
+}
+
+#first {
+    padding-top: 50px;
+}
+
+.P {
+    background-color: blue;
+}
+
+.P li {
+    list-style-type: none;
+}
+
+.games {
+    background-color: aqua;
+}
+
+.movies {
+    background-color: aquamarine;
+}
+
+#gameButton {
+    color: blue;
+    background-color: coral;
+    border-radius: 10px;
+    text-align: center;
+    border: 5px;
+    padding: 10px 50px;
+    border-style: inset;
+}
+
+#movieButton {
+    color: blue;
+    background-color: coral;
+    border-radius: 10px;
+    text-align: center;
+    border: 5px;
+    padding: 10px 50px;
+    border-style: inset;
+}
+
+@media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+    }
+  }
