@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 // variables for html elements
 const movieDisplayEl = $('#movies');
 
@@ -41,7 +40,6 @@ function displayMovies(movie) {
     // appending movieCard to the movie section
     movieDisplayEl.append(movieCard);
 }
->>>>>>> fe7b6079e280cbdb287f02c81001761dc5f17e7a
 
 function getGames() {
     //
@@ -82,16 +80,9 @@ function getMovies() {
         })
         .then(function(movies) {
             console.log(movies);
-<<<<<<< HEAD
-            // loop to display list of moviesss
+            // loop to display list of movies
             // for(let movie of movies) {
             //     displayMovies(movie);
             // }
-=======
-            // loop to display movies
-            for(let movie of movies.search) {
-                displayMovies(movie);
-            }
->>>>>>> fe7b6079e280cbdb287f02c81001761dc5f17e7a
     })
 }
