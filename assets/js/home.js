@@ -1,3 +1,47 @@
+<<<<<<< HEAD
+=======
+// variables for html elements
+const movieDisplayEl = $('#movies');
+
+// function to display searched movies
+function displayMovies(movie) {
+    // creating element for the main card
+    const movieCard = $('div');
+    movieCard.setClass('card col-3');
+    movieCard.attr('data-movie-id', movie.imdbID);
+    
+    // creating element for header
+    const movieCardHeader = $('header')
+    const movieCardHeading = $('h4')
+    movieCardHeading.text(movie.Title);
+
+    // creating element for poster image
+    const movieCardImg = $('img');
+    movieCardImg.attr('src', movie.Poster)
+
+    // creating element for year released
+    const movieCardYear = $('p');
+    movieCardYear.setClass('col-6');
+    movieCardYear.text(`Year Released: ${movie.Year}`);
+
+    // creating element for Type
+    const movieCardType = $('p');
+    movieCardType.setClass('col-6');
+    movieCardType.text(`Type: ${movie.Type}`);
+
+    // creating an element to add a button
+    const movieCardButton = $('button');
+    movieCardButton.setClass('button btn-movie-info');
+    movieCardButton.text('More Info');
+
+    // appending heading to the header
+    movieCardHeader.append(movieCardHeading);
+    // appending movieCard pieces to the movieCard
+    movieCard.append(movieCardHeader, movieCardImg, movieCardYear, movieCardType, movieCardButton);
+    // appending movieCard to the movie section
+    movieDisplayEl.append(movieCard);
+}
+>>>>>>> fe7b6079e280cbdb287f02c81001761dc5f17e7a
 
 function getGames() {
     //
@@ -38,9 +82,16 @@ function getMovies() {
         })
         .then(function(movies) {
             console.log(movies);
+<<<<<<< HEAD
             // loop to display list of moviesss
             // for(let movie of movies) {
             //     displayMovies(movie);
             // }
+=======
+            // loop to display movies
+            for(let movie of movies.search) {
+                displayMovies(movie);
+            }
+>>>>>>> fe7b6079e280cbdb287f02c81001761dc5f17e7a
     })
 }
