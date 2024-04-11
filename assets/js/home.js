@@ -184,3 +184,11 @@ if (window.matchMedia &&
     window.matchMedia('(prefers-color-scheme: dark)').matches) {
   document.body.classList.add('dark');
 }
+
+function getGameInfo() {
+    const gameId = $(this).attr('data-game-id')
+    localStorage.setItem('game-id', gameId)
+    window.location.href = './gamesinfo.html'
+  }
+
+  gameDisplayEl.on('click', '.btn-game-info', getGameInfo);
