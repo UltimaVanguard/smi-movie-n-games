@@ -4,6 +4,7 @@
   <head>
     <meta charset="UTF-8">
     <title>SMI Homepage</title>
+    <link rel="stylesheet" href="https://unpkg.com/chota@latest">
     <link rel="stylesheet" type="text/css" href="./assets/css/home.css"/>
   </head>
   <!-- Set JS to where when you click the "More Info" button sends user to appropriate INFO page weither it be gamesinfo.html or moviesinfo.html -->
@@ -27,20 +28,22 @@
             <button id="movieButton">resets list under</button>
         </ul>
     </section>
-    <section id="games">
-        <h2>Game Section</h2>
-        <div>
-            <form>
-                <input type="text" name="search" placeholder="Game Search">
+    <section class="row is-center" id="games">
+        <h2 class="col-12">Game Section</h2>
+        <div class="col-12">
+            <form id="game-form">
+                <input type="text" name="search" id="game-search" placeholder="Game Search">
+                <input type="submit">
             </form>
             </div>
         <h3>Games You Might Be Looking For:</h3>
     </section>
-    <section id="movies">
-        <h2>Movie Section</h2>
-        <div>
-            <form>
-                <input type="text" name="search" placeholder="Movie Search">
+    <section class="row is-center" id="movies">
+        <h2 class="col-12">Movie Section</h2>
+        <div class="col-12">
+            <form id="movie-form">
+                <input type="text" name="search" id="movie-search" placeholder="Movie Search">
+                <input type="submit">
             </form>
         </div>
         <h3>Movies You Might wanna see:</h3>
@@ -48,5 +51,7 @@
     <footer>
         <p id="footer">Footer section / built by:</p>
     </footer>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="./assets/js/home.js"></script>
     </body>
 </html>
