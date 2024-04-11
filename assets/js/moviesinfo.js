@@ -2,7 +2,7 @@
 const mainEl = $('main');
 const movieTitleEl = $('.movie-title');
 const movieDisplayEl = $('.movie-display');
-const homeButton = $('.go-home');
+const homeButton = $('.home');
 
 // loading local storage
 const movieId = localStorage.getItem('movie-id');
