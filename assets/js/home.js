@@ -6,6 +6,8 @@ const gameInput = $('#game-search');
 const movieInput = $('#movie-search');
 const gameDisplayEl = $('#games');
 const movieDisplayEl = $('#movies');
+const movieList = $('.movie-list');
+
 
 function displayGames(game) {
     // creating element for the main card
@@ -108,12 +110,34 @@ function displayMovies(movie) {
     // movieAddButton.attr('data-movie-id', movie.imdbID);
     movieAddButton.text('Add Movie');
 
+    movieAddButton.on('click', function(){
+        addMovieList(movie)
+    });
+
     // appending heading to the header
     movieCardHeader.append(movieCardHeading);
     // appending movieCard elements to the movieCard
     movieCard.append(movieCardHeader, movieCardImg, movieCardYear, movieCardType, movieInfoButton, movieAddButton);
     // appending movieCard to the movie section
     movieDisplayEl.append(movieCard);
+
+}
+
+function addMovieList(movie) {
+   const movieListEl = $('<li>');
+   movieListEl.addClass('col-2 list-item').attr('id','movies').text(movie.Title).css('display' , 'inline');
+    
+//    const deleteListButton = $('<button>');
+//    deleteListButton.addClass('btn-delete-list button');
+//    deleteListButton.text('x');
+//     deleteListButton.css('height' , '2px');
+    
+
+
+   movieListEl.append(deleteListButton);
+   movieList.append(movieListEl);
+
+
 }
 
 function getGames(event) {
@@ -175,6 +199,7 @@ function getMovies(event) {
     // removes value from input
     movieInput.val('')
 }
+
 
 gameForm.on('submit', getGames);
 
