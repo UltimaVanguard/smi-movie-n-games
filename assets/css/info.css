@@ -21,18 +21,7 @@
 
   body {
     background-color: var(--bg-color);
-  }
-
-  header {
-    background-color: var(--bg-color);
-  }
-
-  section {
-    background-color: var(--bg-color);
-  }
-
-  div {
-    background-color: var(--bg-color);
+    color: var(--text-color);
   }
 
 body.dark {
@@ -84,4 +73,13 @@ body.dark {
     margin: 0 auto;
     text-align: center;
     background-color: var(--bg-color-2);
+}
+
+#addGame {
+  background-color: var(--bg-color-2);
+  color: var(--text-color);
+}
+
+#addGame:hover {
+  background-color: var(--hovers);
 }

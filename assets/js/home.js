@@ -20,6 +20,7 @@ function displayGames(game) {
     // creating element for poster image
     const gameCardImg = $('<img>');
     gameCardImg.attr('src', game.background_image)
+    gameCardImg.css('max-height', '200px')
 
     // creating element for year released
     const gameCardYear = $('<p>');
@@ -64,7 +65,7 @@ function displayGames(game) {
 function displayMovies(movie) {
     // creating element for the main card
     const movieCard = $('<div>');
-    movieCard.addClass('card col-12 col-3-md col-4-lg movie-card');
+    movieCard.addClass('card col-12 col-3-md col-3-lg movie-card');
     movieCard.attr('data-movie-id', movie.imdbID);
     
     // creating element for header
