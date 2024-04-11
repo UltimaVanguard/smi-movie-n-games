@@ -4,6 +4,7 @@
   <head>
     <meta charset="UTF-8">
     <title>General Layout</title>
+    <link rel="stylesheet" href="https://unpkg.com/chota@latest">
     <link rel="stylesheet" type="text/css" href="./assets/css/home.css" />
   </head>
   <!-- Set JS to where when you click the "More Info" button sends user to appropriate INFO page weither it be gamesinfo.html or moviesinfo.html -->
@@ -36,71 +37,74 @@
                 </ul>
         </ul>
     </section>
-    <section id="games">
-        <h2>Game Section</h2>
-        <div>
-            <button id="gameButton">Game Search</button>
-            <div id="myModal" class="modal"></div>
-                
-            
+    <section class="row is-center" id="games">
+        <h2 class="col-12">Game Section</h2>
+        <div class="col-12">
+            <form id="game-form">
+                <input type="text" name="search" id="game-search" placeholder="Game Search">
+                <input type="submit">
+            </form>
             </div>
-        <h3>Game photo will be added added to a 4 item column (with an "add button") based on:</h3>
-        <p>Close to name search UNLESS exact search meets criteria</p>
-        <p>Also will be based on related games (if codeable)</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
+        <h3 class="col-12">Game photo will be added added to a 4 item column (with an "add button") based on:</h3>
+        <p class="col-12">Close to name search UNLESS exact search meets criteria</p>
+        <p class="col-12">Also will be based on related games (if codeable)</p>
+        <p class="col-2">text</p>
+        <p class="col-1">text</p>
+        <p class="col-1">text</p>
+        <p class="col-1">text</p>
+        <p class="col-1">text</p>
+        <p class="col-1">text</p>
+        <p class="col-1">text</p>
+        <p class="col-1">text</p>
+        <p class="col-1">text</p>
+        <p class="col-2">text</p>
+        <p class="col-2">text</p>
+        <p class="col-1">text</p>
+        <p class="col-1">text</p>
+        <p class="col-1">text</p>
+        <p class="col-1">text</p>
+        <p class="col-1">text</p>
+        <p class="col-1">text</p>
+        <p class="col-1">text</p>
+        <p class="col-1">text</p>
+        <p class="col-2">text</p>
     </section>
-    <section id="movies">
-        <h2>Movie Section</h2>
-        <div>
-            <form>
-                <input type="text" name="search" placeholder="Movie Search">
+    <section class="row is-center" id="movies">
+        <h2 class="col-12">Movie Section</h2>
+        <div class="col-12">
+            <form id="movie-form">
+                <input type="text" name="search" id="movie-search" placeholder="Movie Search">
+                <input type="submit">
             </form>
         </div>
-        <h3>Movie Photo will be added to a 4 item column (with an "add button") based on:</h3>
-        <p>Close to name search UNLESS exact search meets criteria</p>
-        <p>Also will be based on related movies (if codeable)</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
+        <h3 class="col-12">Movie Photo will be added to a 4 item column (with an "add button") based on:</h3>
+        <p class="col-12">Close to name search UNLESS exact search meets criteria</p>
+        <p class="col-12">Also will be based on related movies (if codeable)</p>
+        <p class="col-2">text</p>
+        <p class="col-1">text</p>
+        <p class="col-1">text</p>
+        <p class="col-1">text</p>
+        <p class="col-1">text</p>
+        <p class="col-1">text</p>
+        <p class="col-1">text</p>
+        <p class="col-1">text</p>
+        <p class="col-1">text</p>
+        <p class="col-2">text</p>
+        <p class="col-2">text</p>
+        <p class="col-1">text</p>
+        <p class="col-1">text</p>
+        <p class="col-1">text</p>
+        <p class="col-1">text</p>
+        <p class="col-1">text</p>
+        <p class="col-1">text</p>
+        <p class="col-1">text</p>
+        <p class="col-1">text</p>
+        <p class="col-2">text</p>
     </section>
     <footer>
         <p id="footer">Footer section / built by:</p>
     </footer>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="./assets/js/home.js"></script>
     </body>
 </html>
