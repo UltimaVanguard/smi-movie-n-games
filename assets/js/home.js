@@ -7,6 +7,7 @@ const movieInput = $('#movie-search');
 const gameDisplayEl = $('#games');
 const movieDisplayEl = $('#movies');
 const movieList = $('.movie-list');
+const gameList = $('.game-list');
 
 
 function displayGames(game) {
@@ -54,6 +55,10 @@ function displayGames(game) {
     gameAddButton.addClass('button btn-game-add');
     // gameAddButton.attr('data-game-id', game.id);
     gameAddButton.text('Add Game');
+    // added event listener for add game button
+    gameAddButton.on('click', function(){
+        addGameList(game);
+    }) 
 
     // appending heading to the header
     gameCardHeader.append(gameCardHeading);
@@ -109,7 +114,7 @@ function displayMovies(movie) {
     movieAddButton.addClass('button btn-movie-add');
     // movieAddButton.attr('data-movie-id', movie.imdbID);
     movieAddButton.text('Add Movie');
-
+    // adding an event listener to the movie add button
     movieAddButton.on('click', function(){
         addMovieList(movie)
     });
@@ -123,18 +128,25 @@ function displayMovies(movie) {
 
 }
 
+function addGameList(game) {
+    const gameListEl = $('<li>');
+   gameListEl.addClass('col-4 list-item').text(game.name).css('display' , 'inline').css('color' , 'white').css('font-size', '20px').css('background-color' , '#2f4454').css('border' , '5px').css('border-radius' , '10px').css('text-align' , 'center').css('padding', '3px 10px');
+
+   gameList.append(gameListEl);
+     
+
+}
+// function to add moves to the list
 function addMovieList(movie) {
+    // creating an element to add a list item 
    const movieListEl = $('<li>');
-   movieListEl.addClass('col-2 list-item').attr('id','movies').text(movie.Title).css('display' , 'inline');
+   movieListEl.addClass('col-4 list-item').text(movie.Title).css('display' , 'inline').css('color' , 'white').css('font-size', '20px').css('background-color' , '#2f4454').css('border' , '5px').css('border-radius' , '10px').css('text-align' , 'center').css('padding', '3px 10px');;
     
-//    const deleteListButton = $('<button>');
-//    deleteListButton.addClass('btn-delete-list button');
-//    deleteListButton.text('x');
-//     deleteListButton.css('height' , '2px');
+
     
 
 
-   movieListEl.append(deleteListButton);
+//    movieListEl.append(deleteListButton);
    movieList.append(movieListEl);
 
 
@@ -201,6 +213,15 @@ function getMovies(event) {
 }
 
 
+function getMovieInfo() {
+    const movieId = $(this).attr('data-movie-id');
+    localStorage.setItem('movie-id', movieId);
+
+    window.location.href = './moviesinfo.html';
+}
+
 gameForm.on('submit', getGames);
 
 movieForm.on('submit', getMovies);
+
+movieDisplayEl.on('click', '.btn-movie-info', getMovieInfo)
