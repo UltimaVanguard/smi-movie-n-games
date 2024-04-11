@@ -175,6 +175,15 @@ function getMovies(event) {
     movieInput.val('')
 }
 
+function getMovieInfo() {
+    const movieId = $(this).attr('data-movie-id');
+    localStorage.setItem('movie-id', movieId);
+
+    window.location.href = './moviesinfo.html';
+}
+
 gameForm.on('submit', getGames);
 
 movieForm.on('submit', getMovies);
+
+movieDisplayEl.on('click', '.btn-movie-info', getMovieInfo)
