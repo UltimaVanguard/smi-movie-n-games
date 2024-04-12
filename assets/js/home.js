@@ -200,7 +200,7 @@ function getGames(event) {
             $('.game-card').remove();
             $('.game-error').remove();
             // function to display list of games
-            if (!games.results) {
+            if (games.results.length === 0) {
                 const emptyText = $('<h3>');
                 emptyText.addClass('game-error col-12 is-center');
                 emptyText.text('No results found!');
@@ -217,7 +217,7 @@ function getGames(event) {
             console.error(error);
             const errorText = $('<h3>');
             errorText.addClass('game-error col-12 is-center');
-            emptyText.text('No results found!');
+            errorText.text('Something went wrong. Try Again!');
             gameDisplayEl.append(errorText);
         });
 }    
@@ -258,7 +258,13 @@ function getMovies(event) {;
             }
         })
         .catch(function(error) {
+            $('.movie-card').remove();
+            $('.movie-error').remove();
             console.error(error);
+            const errorText = $('<h3>');
+            errorText.addClass('movie-error col-12 is-center');
+            errorText.text('Something went wrong. Try Again!');
+            movieDisplayEl.append(errorText);
         });
 }
 
