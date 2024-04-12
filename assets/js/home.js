@@ -1,5 +1,11 @@
-
 // variables for html elements
+const modal = $('.modal');
+const searchBtn = $('.search');
+const searchForm = $('#search-form');
+const mediaType = $('#media');
+const searchInput = $('#title');
+const closeBtn = $('.cancel');
+const displayEl = $('.search-results');
 const gameForm = $('#game-form');
 const movieForm = $('#movie-form');
 const gameInput = $('#game-search');
@@ -11,6 +17,17 @@ const gameList = $('.game-list');
 const gameResetBtn = $('#gameButton');
 const movieResetBtn = $('#movieButton');
 
+// displays modal
+function displayModal() {
+    modal.css('display', 'block');
+}
+
+// hides modal
+function closeModal(event) {
+    event.preventDefault();
+    console.log('hello')
+    modal.css('display', 'none');
+}
 
 function displayGames(game) {
     // creating element for the main card
@@ -127,8 +144,8 @@ function displayMovies(movie) {
     movieCard.append(movieCardHeader, movieCardImg, movieCardYear, movieCardType, movieInfoButton, movieAddButton);
     // appending movieCard to the movie section
     movieDisplayEl.append(movieCard);
-
 }
+
 // function to add games to the list 
 function addGameList(game) {
     const gameListEl = $('<li>');
@@ -138,6 +155,7 @@ function addGameList(game) {
      
 
 }
+
 // function to add moves to the list
 function addMovieList(movie) {
     // creating an element to add a list item 
@@ -153,7 +171,7 @@ function addMovieList(movie) {
 
 
 }
-//this fumction removes the list of games
+//this function removes the list of games
 function removeGameList(){
  gameList.empty();  
 }
@@ -166,10 +184,9 @@ function removeMovieList(){
 gameResetBtn.on('click', removeGameList);
 movieResetBtn.on('click', removeMovieList);
 
-
+// gets games based on search results
 function getGames(event) {
-    event.preventDefault();
-    const gameSearch = gameInput.val();
+    const gameSearch = searchInput.val();
     //
     //  If statements for criteria goes here 
     //
@@ -184,7 +201,6 @@ function getGames(event) {
             return response.json();
         })
         .then(function(games) {
-            console.log(games);
             // removes current game cards
             $('.game-card').remove();
             // function to display list of games
@@ -192,14 +208,11 @@ function getGames(event) {
                 displayGames(game);
             }
     })
-
-    // removes form input
-    gameInput.val('')
 }
 
-function getMovies(event) {
-    event.preventDefault();
-    const movieSearch = movieInput.val();
+// gets movies based on search results
+function getMovies(event) {;
+    const movieSearch = searchInput.val();
     //
     //  If statements for criteria goes here 
     //
@@ -214,7 +227,6 @@ function getMovies(event) {
             return response.json();
         })
         .then(function(movies) {
-            console.log(movies);
             // removes current movie cards
             $('.movie-card').remove();
             // loop to display movies
@@ -222,12 +234,23 @@ function getMovies(event) {
                 displayMovies(movie);
             }
     })
-
-    // removes value from input
-    movieInput.val('')
 }
 
+// gets type of media from form and runs appropriate function
+function getType(event) {
+    event.preventDefault();
 
+    if (mediaType.val() === 'Movies') {
+        getMovies();
+    } else {
+        getGames();
+    }
+
+    searchInput.val('')
+    closeModal(event);
+}
+
+// saves movieId to local storage and goes to movie info page
 function getMovieInfo() {
     const movieId = $(this).attr('data-movie-id');
     localStorage.setItem('movie-id', movieId);
@@ -235,8 +258,14 @@ function getMovieInfo() {
     window.location.href = './moviesinfo.html';
 }
 
-gameForm.on('submit', getGames);
+// display modal on search button click
+searchBtn.on('click', displayModal);
 
-movieForm.on('submit', getMovies);
+// closes modal on cancel button click
+closeBtn.on('click', closeModal);
 
-movieDisplayEl.on('click', '.btn-movie-info', getMovieInfo)
+// displays games or movies on submit click
+searchForm.on('submit', getType);
+
+// gets more info on more info click for movies
+displayEl.on('click', '.btn-movie-info', getMovieInfo)
