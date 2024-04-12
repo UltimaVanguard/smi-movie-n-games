@@ -116,6 +116,17 @@ input[type=text] {
     border-style: inset;
 }
 
+.game-list {
+  display: inline-block;
+  color:white;
+  font-size: 20px;
+  /* background-color: #2f4454; */
+  border: 5px;
+  border-radius: 10px; 
+  text-align: center;
+  padding: 3px 10px;
+
+}
 
 @media screen and (max-width: 600px) {
     .column {

@@ -118,7 +118,8 @@ function displayMovies(movie) {
     movieAddButton.text('Add Movie');
     // adding an event listener to the movie add button
     movieAddButton.on('click', function(){
-        addMovieList(movie)
+        addMovieList(movie);
+
     });
 
     // appending heading to the header
@@ -151,7 +152,23 @@ function addMovieList(movie) {
 
    movieList.append(movieListEl);
 
+   saveListToStorage(movie);
 
+
+}
+function readListFromStorage() {
+    let list = localStorage.getItem('title');
+    
+    if (!list) {
+        list = [];
+    }
+
+    return list
+
+}
+
+function saveListToStorage(movie) {
+    localStorage.setItem('title', movie.Title);
 }
 //this fumction removes the list of games
 function removeGameList(){
