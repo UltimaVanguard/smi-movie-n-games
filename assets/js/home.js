@@ -1,4 +1,11 @@
 // variables for html elements
+const modal = $('.modal');
+const searchBtn = $('.search');
+const searchForm = $('#search-form');
+const mediaType = $('#media');
+const searchInput = $('#title');
+const closeBtn = $('.cancel');
+const displayEl = $('.search-results');
 const gameForm = $('#game-form');
 const movieForm = $('#movie-form');
 const gameInput = $('#game-search');
@@ -10,6 +17,16 @@ const gameList = $('.game-list');
 const gameResetBtn = $('#gameButton');
 const movieResetBtn = $('#movieButton');
 
+// displays modal
+function displayModal() {
+    modal.css('display', 'block');
+}
+
+// hides modal
+function closeModal(event) {
+    event.preventDefault();
+    modal.css('display', 'none');
+}
 
 function displayGames(game) {
     // creating element for the main card
@@ -131,8 +148,8 @@ function displayMovies(movie) {
     
     // appending movieCard to the movie section
     movieDisplayEl.append(movieCard);
-
 }
+
 // function to add games to the list 
 function addGameList(game) {
     const gameListEl = $('<li>');
@@ -149,7 +166,7 @@ function addMovieList(movie) {
    movieList.append(movieListEl);
 }
 
-//this fumction removes the list of games
+//this function removes the list of games
 function removeGameList(){
  gameList.empty();  
 }
@@ -159,13 +176,9 @@ function removeMovieList(){
     movieList.empty();
 }
 
-// added event listeners to the reset list buttons
-gameResetBtn.on('click', removeGameList);
-movieResetBtn.on('click', removeMovieList);
-
+// gets games based on search results
 function getGames(event) {
-    event.preventDefault();
-    const gameSearch = gameInput.val();
+    const gameSearch = searchInput.val();
     //
     //  If statements for criteria goes here 
     //
@@ -180,7 +193,6 @@ function getGames(event) {
             return response.json();
         })
         .then(function(games) {
-            console.log(games);
             // removes current game cards
             $('.game-card').remove();
             // function to display list of games
@@ -188,14 +200,11 @@ function getGames(event) {
                 displayGames(game);
             }
     })
-
-    // removes form input
-    gameInput.val('')
 }
 
-function getMovies(event) {
-    event.preventDefault();
-    const movieSearch = movieInput.val();
+// gets movies based on search results
+function getMovies(event) {;
+    const movieSearch = searchInput.val();
     //
     //  If statements for criteria goes here 
     //
@@ -210,7 +219,6 @@ function getMovies(event) {
             return response.json();
         })
         .then(function(movies) {
-            console.log(movies);
             // removes current movie cards
             $('.movie-card').remove();
             // loop to display movies
@@ -218,28 +226,20 @@ function getMovies(event) {
                 displayMovies(movie);
             }
     })
-
-    // removes value from input
-    movieInput.val('')
 }
 
+// gets type of media from form and runs appropriate function
+function getType(event) {
+    event.preventDefault();
 
-function getMovieInfo() {
-    const movieId = $(this).attr('data-movie-id');
-    localStorage.setItem('movie-id', movieId);
+    if (mediaType.val() === 'movies') {
+        getMovies();
+    } else {
+        getGames();
+    }
 
-    window.location.href = './moviesinfo.html';
-}
-
-gameForm.on('submit', getGames);
-
-movieForm.on('submit', getMovies);
-
-movieDisplayEl.on('click', '.btn-movie-info', getMovieInfo)
-
-if (window.matchMedia &&
-    window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  document.body.classList.add('dark');
+    searchInput.val('')
+    closeModal(event);
 }
 
 function getGameInfo() {
@@ -247,6 +247,36 @@ function getGameInfo() {
     localStorage.setItem('game-id', gameId)
     window.location.href = './gamesinfo.html'
     console.log(gameURL)
-  }
+}
 
-  gameDisplayEl.on('click', '.btn-game-info', getGameInfo);
+// saves movieId to local storage and goes to movie info page
+function getMovieInfo() {
+    const movieId = $(this).attr('data-movie-id');
+    localStorage.setItem('movie-id', movieId);
+
+    window.location.href = './moviesinfo.html';
+}
+
+if (window.matchMedia &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  document.body.classList.add('dark');
+}
+
+// display modal on search button click
+searchBtn.on('click', displayModal);
+
+// closes modal on cancel button click
+closeBtn.on('click', closeModal);
+
+// displays games or movies on submit click
+searchForm.on('submit', getType);
+
+// goes to game info page
+gameDisplayEl.on('click', '.btn-game-info', getGameInfo);
+
+// goes to movie info page
+movieDisplayEl.on('click', '.btn-movie-info', getMovieInfo);
+
+// added event listeners to the reset list buttons
+gameResetBtn.on('click', removeGameList);
+movieResetBtn.on('click', removeMovieList);
