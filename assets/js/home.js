@@ -198,6 +198,7 @@ function getGameInfo() {
     const gameId = $(this).attr('data-game-id')
     localStorage.setItem('game-id', gameId)
     window.location.href = './gamesinfo.html'
+    console.log(gameURL)
   }
 
   gameDisplayEl.on('click', '.btn-game-info', getGameInfo);
