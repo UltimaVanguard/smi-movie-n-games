@@ -54,6 +54,7 @@ body.dark {
     text-align: center;
     padding: -10px;
     text-decoration: none;
+    background-color: var(--bg-color-2);
   }
   
   .top li a:hover {

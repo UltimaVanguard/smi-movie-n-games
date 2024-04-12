@@ -5,6 +5,11 @@ const gameInput = $('#game-search');
 const movieInput = $('#movie-search');
 const gameDisplayEl = $('#games');
 const movieDisplayEl = $('#movies');
+const movieList = $('.movie-list');
+const gameList = $('.game-list');
+const gameResetBtn = $('#gameButton');
+const movieResetBtn = $('#movieButton');
+
 
 function displayGames(game) {
     // creating element for the main card
@@ -52,6 +57,10 @@ function displayGames(game) {
     gameAddButton.addClass('button btn-game-add');
     // gameAddButton.attr('data-game-id', game.id);
     gameAddButton.text('Add Game');
+    // added event listener for add game button
+    gameAddButton.on('click', function(){
+        addGameList(game);
+    }) 
 
     // appending heading to the header
     gameCardHeader.append(gameCardHeading);
@@ -105,16 +114,54 @@ function displayMovies(movie) {
     // creating an element to add a button
     const movieAddButton = $('<button>');
     movieAddButton.addClass('button btn-movie-add');
+
     // movieAddButton.attr('data-movie-id', movie.imdbID);
     movieAddButton.text('Add Movie');
 
+    // adding an event listener to the movie add button
+    movieAddButton.on('click', function(){
+        addMovieList(movie)
+    });
+
     // appending heading to the header
     movieCardHeader.append(movieCardHeading);
+
     // appending movieCard elements to the movieCard
     movieCard.append(movieCardHeader, movieCardImg, movieCardYear, movieCardType, movieInfoButton, movieAddButton);
+    
     // appending movieCard to the movie section
     movieDisplayEl.append(movieCard);
+
 }
+// function to add games to the list 
+function addGameList(game) {
+    const gameListEl = $('<li>');
+   gameListEl.addClass('col-4 list-item').text(game.name).css('display' , 'inline').css('color' , 'white').css('font-size', '20px').css('background-color' , '#2f4454').css('border' , '5px').css('border-radius' , '10px').css('text-align' , 'center').css('padding', '3px 10px');
+   gameList.append(gameListEl);
+}
+
+// function to add moves to the list
+function addMovieList(movie) {
+
+    // creating an element to add a list item 
+   const movieListEl = $('<li>');
+   movieListEl.addClass('col-4 list-item').text(movie.Title).css('display' , 'inline').css('color' , 'white').css('font-size', '20px').css('background-color' , '#2f4454').css('border' , '5px').css('border-radius' , '10px').css('text-align' , 'center').css('padding', '3px 10px');
+   movieList.append(movieListEl);
+}
+
+//this fumction removes the list of games
+function removeGameList(){
+ gameList.empty();  
+}
+
+// this fumction removes the list of movies
+function removeMovieList(){
+    movieList.empty();
+}
+
+// added event listeners to the reset list buttons
+gameResetBtn.on('click', removeGameList);
+movieResetBtn.on('click', removeMovieList);
 
 function getGames(event) {
     event.preventDefault();
@@ -175,6 +222,7 @@ function getMovies(event) {
     // removes value from input
     movieInput.val('')
 }
+
 
 function getMovieInfo() {
     const movieId = $(this).attr('data-movie-id');

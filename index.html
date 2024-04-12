@@ -21,11 +21,15 @@
     <section class="P">
         <h1 id="first">Your Personal Lists:</h1>
         <ul>
-            <li>List of games you played or completed</li>
-            <button id="gameButton">resets list under</button>
+            <li>Your Game Selection</li>
+            <button id="gameButton">Reset List</button>
+                <ul class="game-list">  
+                </ul>
             <hr></hr>
-            <li>Your movie selction</li>
-            <button id="movieButton">resets list under</button>
+            <li>Your Movie Selction</li>
+            <button id="movieButton">resets list</button>
+                <ul class="movie-list"> 
+                </ul>
         </ul>
     </section>
     <section class="row is-center" id="games">
@@ -33,7 +37,6 @@
         <div class="col-12">
             <form id="game-form">
                 <input type="text" name="search" id="game-search" placeholder="Game Search">
-                <input type="submit">
             </form>
             <h3>Games You Might Be Looking For:</h3>
         </div>
@@ -43,7 +46,6 @@
         <div class="col-12">
             <form id="movie-form">
                 <input type="text" name="search" id="movie-search" placeholder="Movie Search">
-                <input type="submit">
             </form>
             <h3>Movies You Might wanna see:</h3>
         </div>
