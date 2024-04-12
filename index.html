@@ -40,15 +40,14 @@
             <button class="button search">SEARCH!</button>
             <div class="modal">
                 <form id="search-form">
-                    <label for="type">Media:</label>
-                    <input id="media" list="type">
-                    <datalist id="type" name="type">
-                        <option value="Games">
-                        <option value="Movies">
-                    </datalist>
+                    <label for="media">Media:</label>
+                    <select id="media" name="media">
+                        <option value="games">Games</option>
+                        <option value="movies">Movies</option>
+                    </select>
                     <label for="title">Title:</label>
                     <input type="text" id="title" name="title">
-                    <button class="button cancel is-left col-5">Cancel</button>
+                    <button class="button cancel">Cancel</button>
                     <input type="submit">
                 </form>
             </div>
@@ -57,9 +56,6 @@
     <section class="row is-center" id="games">
         <h2 class="col-12">Game Section</h2>
         <div class="col-12">
-            <form id="game-form">
-                <input type="text" name="search" id="game-search" placeholder="Game Search">
-            </form>
             <h3>Games You Might Be Looking For:</h3>
         </div>
     </section>
@@ -67,9 +63,6 @@
     <section class="row is-center" id="movies">
         <h2 class="col-12">Movie Section</h2>
         <div class="col-12">
-            <form id="movie-form">
-                <input type="text" name="search" id="movie-search" placeholder="Movie Search">
-            </form>
             <h3>Movies You Might wanna see:</h3>
         </div>
     </section>

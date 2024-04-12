@@ -25,7 +25,6 @@ function displayModal() {
 // hides modal
 function closeModal(event) {
     event.preventDefault();
-    console.log('hello')
     modal.css('display', 'none');
 }
 
@@ -166,6 +165,7 @@ function addMovieList(movie) {
    movieListEl.addClass('col-4 list-item').text(movie.Title).css('display' , 'inline').css('color' , 'white').css('font-size', '20px').css('background-color' , '#2f4454').css('border' , '5px').css('border-radius' , '10px').css('text-align' , 'center').css('padding', '3px 10px');
    movieList.append(movieListEl);
 }
+
 //this function removes the list of games
 function removeGameList(){
  gameList.empty();  
@@ -175,10 +175,6 @@ function removeGameList(){
 function removeMovieList(){
     movieList.empty();
 }
-
-// added event listeners to the reset list buttons
-gameResetBtn.on('click', removeGameList);
-movieResetBtn.on('click', removeMovieList);
 
 // gets games based on search results
 function getGames(event) {
@@ -236,7 +232,7 @@ function getMovies(event) {;
 function getType(event) {
     event.preventDefault();
 
-    if (mediaType.val() === 'Movies') {
+    if (mediaType.val() === 'movies') {
         getMovies();
     } else {
         getGames();
@@ -246,12 +242,24 @@ function getType(event) {
     closeModal(event);
 }
 
+function getGameInfo() {
+    const gameId = $(this).attr('data-game-id')
+    localStorage.setItem('game-id', gameId)
+    window.location.href = './gamesinfo.html'
+    console.log(gameURL)
+}
+
 // saves movieId to local storage and goes to movie info page
 function getMovieInfo() {
     const movieId = $(this).attr('data-movie-id');
     localStorage.setItem('movie-id', movieId);
 
     window.location.href = './moviesinfo.html';
+}
+
+if (window.matchMedia &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  document.body.classList.add('dark');
 }
 
 // display modal on search button click
@@ -263,16 +271,12 @@ closeBtn.on('click', closeModal);
 // displays games or movies on submit click
 searchForm.on('submit', getType);
 
-if (window.matchMedia &&
-    window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  document.body.classList.add('dark');
-}
+// goes to game info page
+gameDisplayEl.on('click', '.btn-game-info', getGameInfo);
 
-function getGameInfo() {
-    const gameId = $(this).attr('data-game-id')
-    localStorage.setItem('game-id', gameId)
-    window.location.href = './gamesinfo.html'
-    console.log(gameURL)
-  }
+// goes to movie info page
+movieDisplayEl.on('click', '.btn-movie-info', getMovieInfo);
 
-  gameDisplayEl.on('click', '.btn-game-info', getGameInfo);
+// added event listeners to the reset list buttons
+gameResetBtn.on('click', removeGameList);
+movieResetBtn.on('click', removeMovieList);
