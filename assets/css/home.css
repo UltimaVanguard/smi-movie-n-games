@@ -106,6 +106,10 @@ input[type=text] {
     border-style: inset;
 }
 
+#gameButton:hover {
+  background-color: var(--bg-color-2);
+}
+
 #movieButton {
     color: var(--text-color);
     background-color: var(--hovers);
@@ -114,6 +118,10 @@ input[type=text] {
     border: 5px;
     padding: 10px 50px;
     border-style: inset;
+}
+
+#movieButton:hover {
+  background-color: var(--bg-color-2);
 }
 
 

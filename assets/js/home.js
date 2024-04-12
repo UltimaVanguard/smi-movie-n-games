@@ -1,4 +1,3 @@
-
 // variables for html elements
 const gameForm = $('#game-form');
 const movieForm = $('#movie-form');
@@ -26,6 +25,7 @@ function displayGames(game) {
     // creating element for poster image
     const gameCardImg = $('<img>');
     gameCardImg.attr('src', game.background_image)
+    gameCardImg.css('max-height', '200px')
 
     // creating element for year released
     const gameCardYear = $('<p>');
@@ -74,7 +74,7 @@ function displayGames(game) {
 function displayMovies(movie) {
     // creating element for the main card
     const movieCard = $('<div>');
-    movieCard.addClass('card col-12 col-3-md col-4-lg movie-card');
+    movieCard.addClass('card col-12 col-3-md col-3-lg movie-card');
     movieCard.attr('data-movie-id', movie.imdbID);
     
     // creating element for header
@@ -114,8 +114,10 @@ function displayMovies(movie) {
     // creating an element to add a button
     const movieAddButton = $('<button>');
     movieAddButton.addClass('button btn-movie-add');
+
     // movieAddButton.attr('data-movie-id', movie.imdbID);
     movieAddButton.text('Add Movie');
+
     // adding an event listener to the movie add button
     movieAddButton.on('click', function(){
         addMovieList(movie)
@@ -123,8 +125,10 @@ function displayMovies(movie) {
 
     // appending heading to the header
     movieCardHeader.append(movieCardHeading);
+
     // appending movieCard elements to the movieCard
     movieCard.append(movieCardHeader, movieCardImg, movieCardYear, movieCardType, movieInfoButton, movieAddButton);
+    
     // appending movieCard to the movie section
     movieDisplayEl.append(movieCard);
 
@@ -133,30 +137,23 @@ function displayMovies(movie) {
 function addGameList(game) {
     const gameListEl = $('<li>');
    gameListEl.addClass('col-4 list-item').text(game.name).css('display' , 'inline').css('color' , 'white').css('font-size', '20px').css('background-color' , '#2f4454').css('border' , '5px').css('border-radius' , '10px').css('text-align' , 'center').css('padding', '3px 10px');
-
    gameList.append(gameListEl);
-     
-
 }
+
 // function to add moves to the list
 function addMovieList(movie) {
+
     // creating an element to add a list item 
    const movieListEl = $('<li>');
    movieListEl.addClass('col-4 list-item').text(movie.Title).css('display' , 'inline').css('color' , 'white').css('font-size', '20px').css('background-color' , '#2f4454').css('border' , '5px').css('border-radius' , '10px').css('text-align' , 'center').css('padding', '3px 10px');
-    
-
-    
-
-
-
    movieList.append(movieListEl);
-
-
 }
+
 //this fumction removes the list of games
 function removeGameList(){
  gameList.empty();  
 }
+
 // this fumction removes the list of movies
 function removeMovieList(){
     movieList.empty();
@@ -165,7 +162,6 @@ function removeMovieList(){
 // added event listeners to the reset list buttons
 gameResetBtn.on('click', removeGameList);
 movieResetBtn.on('click', removeMovieList);
-
 
 function getGames(event) {
     event.preventDefault();
@@ -240,3 +236,17 @@ gameForm.on('submit', getGames);
 movieForm.on('submit', getMovies);
 
 movieDisplayEl.on('click', '.btn-movie-info', getMovieInfo)
+
+if (window.matchMedia &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  document.body.classList.add('dark');
+}
+
+function getGameInfo() {
+    const gameId = $(this).attr('data-game-id')
+    localStorage.setItem('game-id', gameId)
+    window.location.href = './gamesinfo.html'
+    console.log(gameURL)
+  }
+
+  gameDisplayEl.on('click', '.btn-game-info', getGameInfo);
