@@ -76,12 +76,16 @@ function getMovie() {
     // fetching data
     fetch(movieUrl)
         .then(function(response) {
+            if (!response.ok) {
+                alert('There was an issue retrieving the information. You will be redirected to the home page!')
+                window.location.href = './index.html#movies';
+            }
             return response.json();
         })
         .then(function(movie) {
             console.log(movie);
             displayMovie(movie);
-    })
+        })
 }
 
 function returnHome() {

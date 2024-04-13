@@ -190,17 +190,37 @@ function getGames(event) {
     // fetch request
     fetch(searchURL)
         .then(function(response) {
+            if (!response.ok) {
+                throw response.json();
+            }
             return response.json();
         })
         .then(function(games) {
             // removes current game cards
             $('.game-card').remove();
+            $('.game-error').remove();
             // function to display list of games
-            for(let game of games.results) {
-                displayGames(game);
+            if (games.results.length === 0) {
+                const emptyText = $('<h3>');
+                emptyText.addClass('game-error col-12 is-center');
+                emptyText.text('No results found!');
+                gameDisplayEl.append(emptyText);
+            } else {
+                for(let game of games.results) {
+                    displayGames(game);
+                }
             }
-    })
-}
+        })
+        .catch(function(error) {
+            $('.game-card').remove();
+            $('.game-error').remove();
+            console.error(error);
+            const errorText = $('<h3>');
+            errorText.addClass('game-error col-12 is-center');
+            errorText.text('Something went wrong. Try Again!');
+            gameDisplayEl.append(errorText);
+        });
+}    
 
 // gets movies based on search results
 function getMovies(event) {;
@@ -216,16 +236,36 @@ function getMovies(event) {;
     // fetch request
     fetch(searchURL)
         .then(function(response) {
+            if (!response.ok) {
+                throw response.json();
+            }
             return response.json();
         })
         .then(function(movies) {
             // removes current movie cards
             $('.movie-card').remove();
+            $('.movie-error').remove();
             // loop to display movies
-            for(let movie of movies.Search) {
-                displayMovies(movie);
+            if (!movies.Search) {
+                const errorText = $('<h3>');
+                errorText.addClass('movie-error col-12 is-center');
+                errorText.text('No results found!');
+                movieDisplayEl.append(errorText);
+            } else {
+                for(let movie of movies.Search) {
+                    displayMovies(movie);
+                }   
             }
-    })
+        })
+        .catch(function(error) {
+            $('.movie-card').remove();
+            $('.movie-error').remove();
+            console.error(error);
+            const errorText = $('<h3>');
+            errorText.addClass('movie-error col-12 is-center');
+            errorText.text('Something went wrong. Try Again!');
+            movieDisplayEl.append(errorText);
+        });
 }
 
 // gets type of media from form and runs appropriate function

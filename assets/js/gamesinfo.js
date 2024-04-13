@@ -86,12 +86,16 @@ function getGame() {
     // fetching data
     fetch(gameUrl)
         .then(function(response) {
+            if (!response.ok) {
+                alert('There was an issue retrieving the information. You will be redirected to the home page!');
+                window.location.href = './index.html#games';
+            }
             return response.json();
         })
         .then(function(game) {
             console.log(game);
             displayGame(game);
-    })
+        })
 }
 
 function returnHome() {
