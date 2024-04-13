@@ -1,5 +1,11 @@
-
 // variables for html elements
+const modal = $('.modal');
+const searchBtn = $('.search');
+const searchForm = $('#search-form');
+const mediaType = $('#media');
+const searchInput = $('#title');
+const closeBtn = $('.cancel');
+const displayEl = $('.search-results');
 const gameForm = $('#game-form');
 const movieForm = $('#movie-form');
 const gameInput = $('#game-search');
@@ -10,7 +16,19 @@ const movieList = $('.movie-list');
 const gameList = $('.game-list');
 const gameResetBtn = $('#gameButton');
 const movieResetBtn = $('#movieButton');
+let movieArray = JSON.parse(localStorage.getItem('Movie title')) || [];
+let gameArray = JSON.parse(localStorage.getItem('Game Name')) || [];
 
+// displays modal
+function displayModal() {
+    modal.css('display', 'block');
+}
+
+// hides modal
+function closeModal(event) {
+    event.preventDefault();
+    modal.css('display', 'none');
+}
 
 function displayGames(game) {
     // creating element for the main card
@@ -26,6 +44,7 @@ function displayGames(game) {
     // creating element for poster image
     const gameCardImg = $('<img>');
     gameCardImg.attr('src', game.background_image)
+    gameCardImg.css('max-height', '200px')
 
     // creating element for year released
     const gameCardYear = $('<p>');
@@ -74,7 +93,7 @@ function displayGames(game) {
 function displayMovies(movie) {
     // creating element for the main card
     const movieCard = $('<div>');
-    movieCard.addClass('card col-12 col-3-md col-4-lg movie-card');
+    movieCard.addClass('card col-12 col-3-md col-3-lg movie-card');
     movieCard.attr('data-movie-id', movie.imdbID);
     
     // creating element for header
@@ -114,79 +133,72 @@ function displayMovies(movie) {
     // creating an element to add a button
     const movieAddButton = $('<button>');
     movieAddButton.addClass('button btn-movie-add');
+
     // movieAddButton.attr('data-movie-id', movie.imdbID);
     movieAddButton.text('Add Movie');
+
     // adding an event listener to the movie add button
     movieAddButton.on('click', function(){
-        addMovieList(movie);
-
+        addMovieList(movie.Title)
     });
 
     // appending heading to the header
     movieCardHeader.append(movieCardHeading);
+
     // appending movieCard elements to the movieCard
     movieCard.append(movieCardHeader, movieCardImg, movieCardYear, movieCardType, movieInfoButton, movieAddButton);
+    
     // appending movieCard to the movie section
     movieDisplayEl.append(movieCard);
-
 }
+
 // function to add games to the list 
 function addGameList(game) {
     const gameListEl = $('<li>');
-   gameListEl.addClass('col-4 list-item').text(game.name).css('display' , 'inline').css('color' , 'white').css('font-size', '20px').css('background-color' , '#2f4454').css('border' , '5px').css('border-radius' , '10px').css('text-align' , 'center').css('padding', '3px 10px');
-
+   gameListEl.addClass('col-4 list-item').text(game).css('display' , 'inline').css('color' , 'white').css('font-size', '20px').css('background-color' , '#2f4454').css('border' , '5px').css('border-radius' , '10px').css('text-align' , 'center').css('padding', '3px 10px');
    gameList.append(gameListEl);
-     
-
 }
-// function to add moves to the list
-function addMovieList(movie) {
-    // creating an element to add a list item 
-   const movieListEl = $('<li>');
-   movieListEl.addClass('col-4 list-item').text(movie.Title).css('display' , 'inline').css('color' , 'white').css('font-size', '20px').css('background-color' , '#2f4454').css('border' , '5px').css('border-radius' , '10px').css('text-align' , 'center').css('padding', '3px 10px');
-    
 
-    
-
-
-
-   movieList.append(movieListEl);
-
-   saveListToStorage(movie);
-
-
-}
-function readListFromStorage() {
-    let list = localStorage.getItem('title');
-    
-    if (!list) {
-        list = [];
+function updateGameList() {
+    for (let i = 0; i < gameArray.length; i++) {
+        const gameListItem = gameArray[i];
+        addGameList(gameListItem);
+        
     }
 
-    return list
+}
+
+function updateMovieList() {
+    for (let i = 0; i < movieArray.length; i++) {
+        const movieListItem = movieArray[i];
+        addMovieList(movieListItem);
+        
+    }
 
 }
 
-function saveListToStorage(movie) {
-    localStorage.setItem('title', movie.Title);
+// function to add moves to the list
+function addMovieList(movie) {
+
+    // creating an element to add a list item 
+   const movieListEl = $('<li>');
+   movieListEl.addClass('col-4 list-item').text(movie).css('display' , 'inline').css('color' , 'white').css('font-size', '20px').css('background-color' , '#2f4454').css('border' , '5px').css('border-radius' , '10px').css('text-align' , 'center').css('padding', '3px 10px');
+   movieList.append(movieListEl);
 }
-//this fumction removes the list of games
+
+//this function removes the list of games
 function removeGameList(){
  gameList.empty();  
 }
+
 // this fumction removes the list of movies
 function removeMovieList(){
     movieList.empty();
 }
 
-// added event listeners to the reset list buttons
-gameResetBtn.on('click', removeGameList);
-movieResetBtn.on('click', removeMovieList);
-
-
+// gets games based on search results
 function getGames(event) {
-    event.preventDefault();
-    const gameSearch = gameInput.val();
+    const gameSearch = searchInput.val();
     //
     //  If statements for criteria goes here 
     //
@@ -201,7 +213,6 @@ function getGames(event) {
             return response.json();
         })
         .then(function(games) {
-            console.log(games);
             // removes current game cards
             $('.game-card').remove();
             // function to display list of games
@@ -209,14 +220,11 @@ function getGames(event) {
                 displayGames(game);
             }
     })
-
-    // removes form input
-    gameInput.val('')
 }
 
-function getMovies(event) {
-    event.preventDefault();
-    const movieSearch = movieInput.val();
+// gets movies based on search results
+function getMovies(event) {;
+    const movieSearch = searchInput.val();
     //
     //  If statements for criteria goes here 
     //
@@ -231,7 +239,6 @@ function getMovies(event) {
             return response.json();
         })
         .then(function(movies) {
-            console.log(movies);
             // removes current movie cards
             $('.movie-card').remove();
             // loop to display movies
@@ -239,12 +246,30 @@ function getMovies(event) {
                 displayMovies(movie);
             }
     })
-
-    // removes value from input
-    movieInput.val('')
 }
 
+// gets type of media from form and runs appropriate function
+function getType(event) {
+    event.preventDefault();
 
+    if (mediaType.val() === 'movies') {
+        getMovies();
+    } else {
+        getGames();
+    }
+
+    searchInput.val('')
+    closeModal(event);
+}
+
+function getGameInfo() {
+    const gameId = $(this).attr('data-game-id')
+    localStorage.setItem('game-id', gameId)
+    window.location.href = './gamesinfo.html'
+    console.log(gameURL)
+}
+
+// saves movieId to local storage and goes to movie info page
 function getMovieInfo() {
     const movieId = $(this).attr('data-movie-id');
     localStorage.setItem('movie-id', movieId);
@@ -252,8 +277,27 @@ function getMovieInfo() {
     window.location.href = './moviesinfo.html';
 }
 
-gameForm.on('submit', getGames);
+if (window.matchMedia &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  document.body.classList.add('dark');
+}
+window.onload = updateGameList(), updateMovieList();
 
-movieForm.on('submit', getMovies);
+// display modal on search button click
+searchBtn.on('click', displayModal);
 
-movieDisplayEl.on('click', '.btn-movie-info', getMovieInfo)
+// closes modal on cancel button click
+closeBtn.on('click', closeModal);
+
+// displays games or movies on submit click
+searchForm.on('submit', getType);
+
+// goes to game info page
+gameDisplayEl.on('click', '.btn-game-info', getGameInfo);
+
+// goes to movie info page
+movieDisplayEl.on('click', '.btn-movie-info', getMovieInfo);
+
+// added event listeners to the reset list buttons
+gameResetBtn.on('click', removeGameList);
+movieResetBtn.on('click', removeMovieList);

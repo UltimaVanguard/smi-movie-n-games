@@ -3,6 +3,7 @@ const mainEl = $('main');
 const movieTitleEl = $('.movie-title');
 const movieDisplayEl = $('.movie-display');
 const homeButton = $('.home');
+let movieStorage =[];
 
 // loading local storage
 const movieId = localStorage.getItem('movie-id');
@@ -59,6 +60,11 @@ function displayMovie(movie) {
     cardAddBtn.addClass('button btn-add-movie');
     // cardAddBtn.attr('data-movie-id', movie.imdbID)
     cardAddBtn.text('Add Movie');
+    cardAddBtn.on('click', function(){
+        addMovieList(movie);
+        window.location.href = './index.html';
+
+    });
 
     // appends info to appropriate cards and appends to the page
     cardInfo.append(cardDirector, cardActors, cardGenre, cardPlot, cardRuntime);
@@ -92,9 +98,19 @@ if (window.matchMedia &&
     window.matchMedia('(prefers-color-scheme: dark)').matches) {
   document.body.classList.add('dark');
 }
+function getLocalStorage() {
+   movieStorage = JSON.parse(localStorage.getItem('Movie title'));
+   console.log(movieStorage);
+}
+function addMovieList(movie) {
+    movieStorage.push(movie.Title);
+    localStorage.setItem('Movie title', JSON.stringify(movieStorage));
+}
+
 
 // on load, gets and displays movie information
 window.onload = getMovie();
+window.onload = getLocalStorage();
 
 // mainEl.on('click', '.btn-add-movie', addMovie);
 

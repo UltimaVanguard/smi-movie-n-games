@@ -3,9 +3,9 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>General Layout</title>
+    <title>SMI Homepage</title>
     <link rel="stylesheet" href="https://unpkg.com/chota@latest">
-    <link rel="stylesheet" type="text/css" href="./assets/css/home.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/home.css"/>
   </head>
   <!-- Set JS to where when you click the "More Info" button sends user to appropriate INFO page weither it be gamesinfo.html or moviesinfo.html -->
   <body>
@@ -18,73 +18,53 @@
         </ul>
        </nav>
     </header>
+
     <section class="P">
-        <h1 id="first">Upcoming Lists</h1>
+        <h1 id="first">Your Personal Lists:</h1>
         <ul>
-            <li>Update on your past games</li>
-            <li>List of games you played</li>
-            <li>List of games completed</li>
+            <li>Your Game Selection</li>
             <button id="gameButton">Reset List</button>
-                <ul class="game-list">
-                     
+                <ul class="game-list">  
                 </ul>
             <hr></hr>
-            <li>Your past movie genres</li>
-            <li>List of watched movies</li>
-            
-            <button id="movieButton">Reset List</button>
-                <ul class="movie-list">
-                    
+            <li>Your Movie Selction</li>
+            <button id="movieButton">resets list</button>
+                <ul class="movie-list"> 
                 </ul>
         </ul>
     </section>
+
+    <main>
+        <section class="row is-center">
+            <h2 class="col-12">Search Here!</h2>
+            <button class="button search">SEARCH!</button>
+            <div class="modal">
+                <form id="search-form">
+                    <label for="media">Media:</label>
+                    <select id="media" name="media">
+                        <option value="games">Games</option>
+                        <option value="movies">Movies</option>
+                    </select>
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title">
+                    <button class="button cancel">Cancel</button>
+                    <input type="submit">
+                </form>
+            </div>
+        </section>
+    </main>
     <section class="row is-center" id="games">
         <h2 class="col-12">Game Section</h2>
         <div class="col-12">
-            <form id="game-form">
-                <input type="text" name="search" id="game-search" placeholder="Game Search">
-                <input type="submit">
-            </form>
-            </div>
-        <h3 class="col-12">Game photo will be added added to a 4 item column (with an "add button") based on:</h3>
-        <p class="col-12">Close to name search UNLESS exact search meets criteria</p>
-        <p class="col-12">Also will be based on related games (if codeable)</p>
-        <p class="col-2">text</p>
-        <p class="col-1">text</p>
-        <p class="col-1">text</p>
-        <p class="col-1">text</p>
-        <p class="col-1">text</p>
-        <p class="col-1">text</p>
-        <p class="col-1">text</p>
-        <p class="col-1">text</p>
-        <p class="col-1">text</p>
-        <p class="col-2">text</p>
-        <p class="col-2">text</p>
-        <p class="col-1">text</p>
-        <p class="col-1">text</p>
-        <p class="col-1">text</p>
-        <p class="col-1">text</p>
-        <p class="col-1">text</p>
-        <p class="col-1">text</p>
-        <p class="col-1">text</p>
-        <p class="col-1">text</p>
-        <p class="col-2">text</p>
+            <h3>Games You Might Be Looking For:</h3>
+        </div>
     </section>
+    <hr></hr>
     <section class="row is-center" id="movies">
         <h2 class="col-12">Movie Section</h2>
         <div class="col-12">
-            <form id="movie-form">
-                <input type="text" name="search" id="movie-search" placeholder="Movie Search">
-                <input type="submit">
-            </form>
-            
+            <h3>Movies You Might wanna see:</h3>
         </div>
-        
-        <h3 class="col-12">Movie Photo will be added to a 4 item column (with an "add button") based on:</h3>
-        <p class="col-12">Close to name search UNLESS exact search meets criteria</p>
-        <p class="col-12">Also will be based on related movies (if codeable)</p>
-        
-       
     </section>
     <footer>
         <p id="footer">Footer section / built by:</p>
