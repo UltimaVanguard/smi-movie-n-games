@@ -189,11 +189,13 @@ function addMovieList(movie) {
 //this function removes the list of games
 function removeGameList(){
  gameList.empty();  
+ localStorage.removeItem('Game Name');
 }
 
 // this fumction removes the list of movies
 function removeMovieList(){
     movieList.empty();
+    localStorage.removeItem('Movie title');
 }
 
 // gets games based on search results
@@ -281,6 +283,7 @@ if (window.matchMedia &&
     window.matchMedia('(prefers-color-scheme: dark)').matches) {
   document.body.classList.add('dark');
 }
+// *******************************
 window.onload = updateGameList(), updateMovieList();
 
 // display modal on search button click
