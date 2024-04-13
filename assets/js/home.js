@@ -16,6 +16,8 @@ const movieList = $('.movie-list');
 const gameList = $('.game-list');
 const gameResetBtn = $('#gameButton');
 const movieResetBtn = $('#movieButton');
+let movieArray = JSON.parse(localStorage.getItem('Movie title')) || [];
+let gameArray = JSON.parse(localStorage.getItem('Game Name')) || [];
 
 // displays modal
 function displayModal() {
@@ -137,7 +139,7 @@ function displayMovies(movie) {
 
     // adding an event listener to the movie add button
     movieAddButton.on('click', function(){
-        addMovieList(movie)
+        addMovieList(movie.Title)
     });
 
     // appending heading to the header
@@ -153,8 +155,26 @@ function displayMovies(movie) {
 // function to add games to the list 
 function addGameList(game) {
     const gameListEl = $('<li>');
-   gameListEl.addClass('col-4 list-item').text(game.name).css('display' , 'inline').css('color' , 'white').css('font-size', '20px').css('background-color' , '#2f4454').css('border' , '5px').css('border-radius' , '10px').css('text-align' , 'center').css('padding', '3px 10px');
+   gameListEl.addClass('col-4 list-item').text(game).css('display' , 'inline').css('color' , 'white').css('font-size', '20px').css('background-color' , '#2f4454').css('border' , '5px').css('border-radius' , '10px').css('text-align' , 'center').css('padding', '3px 10px');
    gameList.append(gameListEl);
+}
+
+function updateGameList() {
+    for (let i = 0; i < gameArray.length; i++) {
+        const gameListItem = gameArray[i];
+        addGameList(gameListItem);
+        
+    }
+
+}
+
+function updateMovieList() {
+    for (let i = 0; i < movieArray.length; i++) {
+        const movieListItem = movieArray[i];
+        addMovieList(movieListItem);
+        
+    }
+
 }
 
 // function to add moves to the list
@@ -162,18 +182,20 @@ function addMovieList(movie) {
 
     // creating an element to add a list item 
    const movieListEl = $('<li>');
-   movieListEl.addClass('col-4 list-item').text(movie.Title).css('display' , 'inline').css('color' , 'white').css('font-size', '20px').css('background-color' , '#2f4454').css('border' , '5px').css('border-radius' , '10px').css('text-align' , 'center').css('padding', '3px 10px');
+   movieListEl.addClass('col-4 list-item').text(movie).css('display' , 'inline').css('color' , 'white').css('font-size', '20px').css('background-color' , '#2f4454').css('border' , '5px').css('border-radius' , '10px').css('text-align' , 'center').css('padding', '3px 10px');
    movieList.append(movieListEl);
 }
 
 //this function removes the list of games
 function removeGameList(){
  gameList.empty();  
+ localStorage.removeItem('Game Name');
 }
 
 // this fumction removes the list of movies
 function removeMovieList(){
     movieList.empty();
+    localStorage.removeItem('Movie title');
 }
 
 // gets games based on search results
@@ -301,6 +323,8 @@ if (window.matchMedia &&
     window.matchMedia('(prefers-color-scheme: dark)').matches) {
   document.body.classList.add('dark');
 }
+// *******************************
+window.onload = updateGameList(), updateMovieList();
 
 // display modal on search button click
 searchBtn.on('click', displayModal);

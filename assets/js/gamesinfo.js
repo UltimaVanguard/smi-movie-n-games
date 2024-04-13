@@ -3,6 +3,7 @@ const mainEl = $('main');
 const gameTitleEl = $('.game-title');
 const gameDisplayEl = $('.game-display');
 const homeButton = $('.home');
+let gameStorage = [];
 
 // loading local storage
 const gameId = localStorage.getItem('game-id');
@@ -69,6 +70,11 @@ function displayGame(game) {
     cardAddBtn.addClass('button btn-add-movie');
     // cardAddBtn.attr('data-movie-id', movie.imdbID)
     cardAddBtn.text('Add Game');
+    cardAddBtn.on('click', function(){
+        addGameList(game);
+        window.location.href = './index.html';
+
+    });
 
     // appends info to appropriate cards and appends to the page
     cardInfo.append(cardStyle, cardCreator, cardGenre, cardPlatform);
@@ -106,9 +112,18 @@ if (window.matchMedia &&
     window.matchMedia('(prefers-color-scheme: dark)').matches) {
   document.body.classList.add('dark');
 }
+function getLocalStorage() {
+    gameStorage = JSON.parse(localStorage.getItem('Game Name'));
+    
+ }
+function addGameList(game) {
+    gameStorage.push(game.name);
+    localStorage.setItem('Game Name', JSON.stringify(gameStorage));
+}
 
 // on load, gets and displays movie information
 window.onload = getGame();
+window.onload = getLocalStorage();
 
 // mainEl.on('click', '.btn-add-movie', addMovie);
 
