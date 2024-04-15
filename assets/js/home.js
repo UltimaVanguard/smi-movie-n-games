@@ -16,8 +16,8 @@ const movieList = $('.movie-list');
 const gameList = $('.game-list');
 const gameResetBtn = $('#gameButton');
 const movieResetBtn = $('#movieButton');
-let movieArray = JSON.parse(localStorage.getItem('Movie title')) || [];
-let gameArray = JSON.parse(localStorage.getItem('Game Name')) || [];
+let movieArray = JSON.parse(localStorage.getItem('movie-title')) || [];
+let gameArray = JSON.parse(localStorage.getItem('game-name')) || [];
 
 // displays modal
 function displayModal() {
@@ -78,7 +78,9 @@ function displayGames(game) {
     gameAddButton.text('Add Game');
     // added event listener for add game button
     gameAddButton.on('click', function(){
-        addGameList(game);
+        addGameList(game.name);
+        gameArray.push(game.name);
+        localStorage.setItem('game-name', JSON.stringify(gameArray));
     }) 
 
     // appending heading to the header
@@ -140,6 +142,8 @@ function displayMovies(movie) {
     // adding an event listener to the movie add button
     movieAddButton.on('click', function(){
         addMovieList(movie.Title)
+        movieArray.push(movie.Title);
+        localStorage.setItem('movie-title', JSON.stringify(movieArray));
     });
 
     // appending heading to the header
@@ -155,7 +159,7 @@ function displayMovies(movie) {
 // function to add games to the list 
 function addGameList(game) {
     const gameListEl = $('<li>');
-   gameListEl.addClass('col-4 list-item').text(game.name).css('display' , 'inline').css('color' , 'white').css('font-size', '20px').css('background-color' , '#2f4454').css('border' , '5px').css('border-radius' , '10px').css('text-align' , 'center').css('padding', '3px 10px');
+   gameListEl.addClass('col-4 list-item').text(game).css('display' , 'inline').css('color' , 'white').css('font-size', '20px').css('background-color' , '#2f4454').css('border' , '5px').css('border-radius' , '10px').css('text-align' , 'center').css('padding', '3px 10px');
    gameList.append(gameListEl);
 }
 
@@ -189,13 +193,13 @@ function addMovieList(movie) {
 //this function removes the list of games
 function removeGameList(){
  gameList.empty();  
- localStorage.removeItem('Game Name');
+ localStorage.removeItem('game-name');
 }
 
 // this fumction removes the list of movies
 function removeMovieList(){
     movieList.empty();
-    localStorage.removeItem('Movie title');
+    localStorage.removeItem('movie-title');
 }
 
 // gets games based on search results

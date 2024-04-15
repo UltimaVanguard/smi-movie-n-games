@@ -20,7 +20,19 @@ Going into more info will bring up separate page for the specific game or movie.
 
 The lists of games or movies that you have saved can be reset by clicking the reset buttons for each list.
 
-<!-- ![alt text](https://github.com/UltimaVanguard/payroll-manager/blob/main/Assets/first-name.png) -->
+![alt text](https://github.com/UltimaVanguard/smi-movie-n-games/blob/main/assets/images/home-page.png)
+
+![alt text](https://github.com/UltimaVanguard/smi-movie-n-games/blob/main/assets/images/modal.png)
+
+![alt text](https://github.com/UltimaVanguard/smi-movie-n-games/blob/main/assets/images/game-display.png)
+
+![alt text](https://github.com/UltimaVanguard/smi-movie-n-games/blob/main/assets/images/movie-display.png)
+
+![alt text](https://github.com/UltimaVanguard/smi-movie-n-games/blob/main/assets/images/list-display.png)
+
+![alt text](https://github.com/UltimaVanguard/smi-movie-n-games/blob/main/assets/images/game-info-page.png)
+
+![alt text](https://github.com/UltimaVanguard/smi-movie-n-games/blob/main/assets/images/movie-info-page.png)
 
 ## Credits
 
