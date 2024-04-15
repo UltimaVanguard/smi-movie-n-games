@@ -155,7 +155,7 @@ function displayMovies(movie) {
 // function to add games to the list 
 function addGameList(game) {
     const gameListEl = $('<li>');
-   gameListEl.addClass('col-4 list-item').text(game).css('display' , 'inline').css('color' , 'white').css('font-size', '20px').css('background-color' , '#2f4454').css('border' , '5px').css('border-radius' , '10px').css('text-align' , 'center').css('padding', '3px 10px');
+   gameListEl.addClass('col-4 list-item').text(game.name).css('display' , 'inline').css('color' , 'white').css('font-size', '20px').css('background-color' , '#2f4454').css('border' , '5px').css('border-radius' , '10px').css('text-align' , 'center').css('padding', '3px 10px');
    gameList.append(gameListEl);
 }
 
