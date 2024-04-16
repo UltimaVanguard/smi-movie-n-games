@@ -76,7 +76,7 @@ function displayMovie(movie) {
 // gets movie by ID in local storage
 function getMovie() {
     // building URL
-    const movieUrl = `http://www.omdbapi.com/?i=${movieId}&apikey=56faa022`;
+    const movieUrl = `https://www.omdbapi.com/?i=${movieId}&apikey=56faa022`;
     console.log(movieUrl);
 
     // fetching data
@@ -103,12 +103,15 @@ if (window.matchMedia &&
   document.body.classList.add('dark');
 }
 function getLocalStorage() {
-   movieStorage = JSON.parse(localStorage.getItem('Movie title'));
+   movieStorage = JSON.parse(localStorage.getItem('movie-title'));
    console.log(movieStorage);
 }
 function addMovieList(movie) {
+    if (!movieStorage) {
+        movieStorage = [];
+    }
     movieStorage.push(movie.Title);
-    localStorage.setItem('Movie title', JSON.stringify(movieStorage));
+    localStorage.setItem('movie-title', JSON.stringify(movieStorage));
 }
 
 

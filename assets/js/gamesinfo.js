@@ -113,12 +113,15 @@ if (window.matchMedia &&
   document.body.classList.add('dark');
 }
 function getLocalStorage() {
-    gameStorage = JSON.parse(localStorage.getItem('Game Name'));
+    gameStorage = JSON.parse(localStorage.getItem('game-name'));
     
  }
 function addGameList(game) {
+    if (!gameStorage) {
+        gameStorage = [];
+    }
     gameStorage.push(game.name);
-    localStorage.setItem('Game Name', JSON.stringify(gameStorage));
+    localStorage.setItem('game-name', JSON.stringify(gameStorage));
 }
 
 // on load, gets and displays movie information
